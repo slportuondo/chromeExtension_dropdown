@@ -9,16 +9,21 @@
       <div id='infoPanel'><h1>DROPDOWN</h1>
           <span id='sessionKey'></span></span>
         </div>
-      <div id='midPanel'>
-        <form class='dropScreen' method='post' action='http://localhost:3000' enctype='multipart/form-data'>
-          <label type='button'>
-            <h2>Drop</h2>
-            <input id='box' type="file" accept="image/*" />
-          </label>
-        </form>
+        <div class='dropScreen' id='midPanel' ondrop='drop(event)' ondragover='allowDrop(event)'>
+          <form class='dropScreen' method='post' action='http://localhost:3000' enctype='multipart/form-data'>
+            <label type='button'>
+              <input id='box' type='file' accept='image/*' />
+            </label>
+          </form>
+        </div>
       </div>
     <div id='bottomPanel'>
-      <button form="myform">DROP</button>
+      <button form='myform'>DROP</button>
+      <button onclick='*'>DELETE</button>
     </div>
+
+    <img id="drag1" src="pixil-frame-0.png" draggable="true" ondragstart="drag(event)">
+
+    <script src="./background.js"></script>
   </body>
 </html>
