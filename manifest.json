@@ -2,13 +2,24 @@
   "name": "dropdown-extension",
   "version": "1.0",
   "description": "An extension to drop img files from chrome to ios devices",
-  "permissions": ["storage"],
+  "manifest_version": 2,
+  "permissions": [
+    "storage",
+    "contextMenus"
+  ],
   "background": {
     "scripts": ["background.js"],
     "persistent": false
   },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": ["content.js"]
+    }
+  ],
   "browser_action": {
       "default_popup": "popup.html"
-  },
-  "manifest_version": 2
+  }
 }

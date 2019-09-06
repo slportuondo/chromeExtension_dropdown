@@ -1,24 +1,28 @@
 <!DOCTYPE html>
-<html>
-    <head>
-      <meta charset='utf-8' />
-      <title>DropDown App</title>
-      <link rel='stylesheet' type='text/css' href='style.css' />
-    </head>
-    <body>
+<html lang='en' dir='ltr'>
+  <head>
+    <meta charset='utf-8'>
+    <title>name</title>
+    <link rel='stylesheet' href='./style.css'>
+  </head>
+  <body>
+    <div id='popupDOM'>
       <div id='infoPanel'><h1>DROPDOWN</h1>
-          <span id='sessionKey'></span></span>
-        </div>
+        <span id='sessionKey'></span>
+      </div>
       <div id='midPanel'>
         <form class='dropScreen' method='post' action='http://localhost:3000' enctype='multipart/form-data'>
           <label type='button'>
             <h2>Drop</h2>
-            <input id='box' type="file" accept="image/*" />
+            <input id='toDrop' type='file' accept='image/*' />
           </label>
         </form>
       </div>
-    <div id='bottomPanel'>
-      <button form="myform">DROP</button>
+      <div id='bottomPanel'>
+        <button form='myform'>DROP</button>
+      </div>
+      <script src='./background.js'></script>
     </div>
+    <img src='./aaa.png'
   </body>
 </html>
