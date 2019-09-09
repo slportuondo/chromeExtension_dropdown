@@ -4,8 +4,8 @@
   "description": "An extension to drop img files from chrome to ios devices",
   "manifest_version": 2,
   "permissions": [
-    "storage",
-    "contextMenus"
+    "contextMenus",
+    "tabs"
   ],
   "background": {
     "scripts": ["background.js"],
