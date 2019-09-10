@@ -1,3 +1,19 @@
+/*
+
+
+
+
+
+
+THIS IS THE CODE FOR THE CONTENT MENU, DISABLED FOR NOW --> ALL CURRENT EXTENSION SCRIPTS LIVE IN THE CONTENT.JS SCRIPT!
+
+
+
+
+
+
+
+*/
 // // chrome.runtime.onMessage.addListener(function(response, sender, sendResponse) {
 // //     alert(response)
 // // });

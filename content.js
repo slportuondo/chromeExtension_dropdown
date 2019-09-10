@@ -1,15 +1,14 @@
+// add event listeners to each image on the page --> temporary fix to get around chrome security setbacks
 let imageTags = document.getElementsByTagName('img');
-
 
 [...imageTags].forEach(function(tag){
   tag.addEventListener('dragstart', async (e) => {
     const srcURL = tag.getAttribute('src');
     const foundOnURL = window.location.href;
 
-    console.log('------------------------------this is the source url------------------------', srcURL);
+    // drop the image (in the form of it's src attribute and the location it was found) to the express server
     (async () => {
-      console.log('about to make post request');
-      const res = await fetch('http://localhost:3000/drop/', {
+      const successfulDrop = await fetch('http://localhost:3000/drop/', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -18,9 +17,7 @@ let imageTags = document.getElementsByTagName('img');
         body: JSON.stringify({srcURL: srcURL, foundOnURL: foundOnURL})
       });
 
-      console.log('after post request')
-      const content = await res.json()
-      console.log(content)
+      console.log(successfulDrop);
     })()
   }, true)
 })
