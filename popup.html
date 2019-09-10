@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<html>
-    <head>
-      <meta charset='utf-8' />
-      <title>DropDown App</title>
-      <link rel='stylesheet' type='text/css' href='style.css' />
-    </head>
-    <body>
-      <div id='infoPanel'><h1>DROPDOWN</h1>
-          <span id='sessionKey'></span></span>
-        </div>
-        <div class='dropScreen' id='midPanel' ondrop='drop(event)' ondragover='allowDrop(event)'>
-          <form class='dropScreen' method='post' action='http://localhost:3000' enctype='multipart/form-data'>
-            <label type='button'>
-              <input id='box' type='file' accept='image/*' />
-            </label>
-          </form>
-        </div>
+<html lang='en' dir='ltr'>
+  <head>
+    <meta charset='utf-8'>
+    <title>name</title>
+    <link rel='stylesheet' href='./style.css'>
+  </head>
+  <body>
+    <div id='popupDOM'>
+      <div id='infoPanel'><h1>dropdown</h1>
+        <span id='sessionKey'></span>
       </div>
-    <div id='bottomPanel'>
-      <button form='myform'>DROP</button>
-      <button onclick='*'>DELETE</button>
+      <div id='midPanel'>
+        <form class='dropScreen' method='post' action='http://localhost:3000' enctype='multipart/form-data'>
+          <label type='button'>
+            <img id='droppedImg' src='' />
+          </label>
+        </form>
+      </div>
+      <div id='bottomPanel'>
+        <button form='myform'>DROP</button>
+      </div>
+      <!-- <script src='./background.js'></script> -->
     </div>
-
-    <img id="drag1" src="pixil-frame-0.png" draggable="true" ondragstart="drag(event)">
-
-    <script src="./background.js"></script>
+    <img src='./aaa.png'
   </body>
 </html>

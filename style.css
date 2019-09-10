@@ -1,10 +1,16 @@
 body {
+  margin: 0;
+  padding: 0;
+}
+#popupDOM {
   display: flex;
   flex-direction: column;
   height: 350px;
   width: 275px;
+  border-radius: 3px;
   background: #EFF8FF;
   margin: 0;
+  padding: 0;
 }
 
 #infoPanel {
@@ -40,8 +46,8 @@ input[type="file"] {
   border-radius: 3px;
 }
 
-.dropScreen.highlight {
-  background: yellow;
+.dropScreen:drop {
+  background-color: green;
 }
 
 #bottomPanel {
