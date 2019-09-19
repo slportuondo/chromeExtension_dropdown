@@ -1,14 +1,17 @@
+// Content.js adds drag listeners to every img element on each page. When an image is dragged a post request with the image's information is dropped to the express server
+
+
 // add event listeners to each image on the page --> temporary fix to get around chrome security setbacks
 let imageTags = document.getElementsByTagName('img');
 
-[...imageTags].forEach(function(tag){
+[...imageTags].forEach(function(tag) {
   tag.addEventListener('dragstart', async () => {
     const srcURL = tag.getAttribute('src');
     const foundOnURL = window.location.href;
 
     chrome.runtime.sendMessage({ type: 'sending', message: 'sending'});
 
-    // drop the image (in the form of it's src attribute and the location it was found) to the express server
+    // drop the image (in the form of its src attribute and the location it was found) to the express server
     (async () => {
       const successfulDrop = await fetch('http://localhost:3000/drop/', {
         method: 'POST',

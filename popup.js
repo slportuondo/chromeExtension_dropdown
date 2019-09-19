@@ -5,15 +5,17 @@ const sendMessage = (type, message = null) => {
 }
 
 document.getElementById('dropdownButtons').addEventListener('click', async (e) => {
+
   const clicked = e.target.id
-  if (clicked == 'newSessionButton') {
+
+  if ('newSessionButton' == clicked) {
     const userInput = document.getElementById('newSessionNameInput')
     const newSessionName = userInput.value
     userInput.value = ''
 
     const returnedKey = await sendMessage('newSession', newSessionName);
 
-  } else if (clicked == 'currentKeyButton') {
+  } else if ('currentKeyButton' == clicked) {
     // Request current key
     const returnedKey = await sendMessage('getCurrentKey')
 
