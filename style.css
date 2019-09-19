@@ -35,15 +35,10 @@ form {
   color: blue;
 }
 
-input[type="file"] {
-    display: none;
-}
-
 .dropScreen {
-  width: 90%;
-  height: 90%;
-  border: 2px dashed lightgrey;
-  border-radius: 3px;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .dropScreen:drop {
