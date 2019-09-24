@@ -3,6 +3,17 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   evaluateMessage(message)
 })
 
+// Send current session information to popup.js script
+function sendToPopup(sessionInfo) {
+  console.log(sessionInfo);
+  chrome.runtime.sendMessage({
+    type: 'sessionInfo',
+    sessionName: sessionInfo.sessionName,
+    sessionKey: sessionInfo.sessionKey
+    }, (response) => { console.log(response) }
+  )
+}
+
 async function evaluateMessage (message) {
   if (message.type == 'toDrop') {
     await dropImage(message)
@@ -46,9 +57,12 @@ async function getCurrentKey(message) {
       },
       body: JSON.stringify({ currentSessionId: sessionId })
     })
-    .then((keyFound) => {
-      keyFound.json()
-      console.log('key found --------------> ', keyFound)
+    .then(async (keyFound) => {
+      const sessionInfo = keyFound.json()
+      return sessionInfo
+    })
+    .then((sessionInfo) => {
+      sendToPopup(sessionInfo)
     })
   }
 }
@@ -69,9 +83,9 @@ async function createSession (message) {
     })
     .then(async (res) => {
       const sessionCreated = await res.json()
-      console.log(sessionCreated, 'THIS WAS THE SESSION THAT WAS CREATED');
       await chrome.storage.local.set({currentDropDownId: sessionCreated._id}, function() {
         console.log('new session id is stored!!');
+        sendToPopup(sessionCreated)
       });
     })
   }
