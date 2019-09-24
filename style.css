@@ -48,6 +48,8 @@ form {
 
 #bottomPanel {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex: 3;
   background: rgba(38, 78, 173, .8)
 }

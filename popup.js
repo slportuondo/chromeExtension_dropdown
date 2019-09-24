@@ -12,12 +12,12 @@ document.getElementById('dropdownButtons').addEventListener('click', async (e) =
 
 
     // const newSessionResponse = sendMessage('newSession', newSessionName);
-    const newSessionResponse = await chrome.runtime.sendMessage({type: 'newSession', message: newSessionName}, (response) => {
+    const newSessionResponse = await chrome.runtime.sendMessage({type: 'newSession', sessionName: newSessionName}, (response) => {
       console.log(response);
     })
 
 
-    // const newSession = JSON.parse(newSessionResponse)
+    const newSession = JSON.parse(newSessionResponse)
 
 
     document.getElementById('dropdownSessionName').innerText = newSession.sessionName
