@@ -4,6 +4,8 @@
 // add event listeners to each image on the page --> temporary fix to get around chrome security setbacks
 let imageTags = document.getElementsByTagName('img');
 
+const sessionId = chrome.storage.local.get(['currentDropDownId']);
+
 [...imageTags].forEach(function(tag) {
   tag.addEventListener('dragstart', async () => {
     const srcURL = tag.getAttribute('src');
@@ -19,7 +21,7 @@ let imageTags = document.getElementsByTagName('img');
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({srcURL: srcURL})
+        body: JSON.stringify({srcURL: srcURL, sessionId: sessionId})
       });
     })()
     // send the website the image was found on to the popup, indicating that it was sent

@@ -1,4 +1,4 @@
-chrome.runtime.onMessage.addListener(async(message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener( async (message, sender, sendResponse) => {
   // if the type property of the message object is newSession, send the new session name to express and wait for a random session key to be returned
   if (message.type == 'newSession') {
     const createSession = await fetch('http://localhost:3000/session/', {
@@ -10,15 +10,24 @@ chrome.runtime.onMessage.addListener(async(message, sender, sendResponse) => {
       body: JSON.stringify({sessionName: message.message})
     })
     const sessionCreated = await createSession.json()
+
     console.log(sessionCreated, 'THIS WAS THE SESSION THAT WAS CREATED');
-    chrome.storage.local.set({currentDropDownId: sessionCreated._id})
-    sendResponse({response: createSession})
+
+
+    await chrome.storage.local.set({currentDropDownId: sessionCreated._id}, function() {
+      console.log('new session id is stored!!');
+    });
+
+
+    sendResponse(sessionCreated)
     // must return true for sendResponse to function asyncronously
     return true
 /*-------------------------------------------------------------------------------*/
   } else if (message.type == 'getCurrentKey') {
     // make a GET request for the current session information
-    const sessionId = await chrome.storage.local.get(['currentDropDownId'])
+    const sessionId = await chrome.storage.local.get(['currentDropDownId'], function(result) {
+      console.log('Value currently is ' + result.currentDropDownId);
+    });
     const getKey = await fetch('http://localhost:3000/session/', {
       method: 'GET',
       headers: {
@@ -28,7 +37,8 @@ chrome.runtime.onMessage.addListener(async(message, sender, sendResponse) => {
       body: JSON.stringify({id: sessionId})
     })
     const keyFound = await getKey.json()
-    sendResponse(keyFound)
+    console.log(keyFound, 'THIS IS THE KEY IN BACKGROUND.JS');
+    await sendResponse(keyFound)
     return true
   }
 })
